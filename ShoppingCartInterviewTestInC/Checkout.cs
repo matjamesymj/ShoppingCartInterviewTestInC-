@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShoppingCartInterviewTestInC
+﻿namespace ShoppingCartInterviewTestInC
 {
     public class Checkout : ICheckout
     {
-        Cart Cart { get; set; }
         public Checkout()
         {
             Cart = new Cart();
         }
+
+        private Cart Cart { get; }
 
         public Cart AddToCart(Product product)
         {
@@ -30,17 +25,6 @@ namespace ShoppingCartInterviewTestInC
             return Cart;
         }
 
-        private static void AddOneToQuantity(CartItem cartItem)
-        {
-            cartItem.Quantiy += 1;
-        }
-
-        private static CartItem ProductNotInCart(Product product)
-        {
-            return new CartItem { Product = product, Quantiy = 1 };
-
-        }
-
         public Cart RemoveFromCart(CartItem cartItem)
         {
             Cart.CartItems.Remove(cartItem);
@@ -50,6 +34,16 @@ namespace ShoppingCartInterviewTestInC
         public Cart ViewCart()
         {
             return Cart;
+        }
+
+        private static void AddOneToQuantity(CartItem cartItem)
+        {
+            cartItem.Quantiy += 1;
+        }
+
+        private static CartItem ProductNotInCart(Product product)
+        {
+            return new CartItem {Product = product, Quantiy = 1};
         }
     }
 }

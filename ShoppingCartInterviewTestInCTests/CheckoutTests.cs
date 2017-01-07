@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShoppingCartInterviewTestInC;
 
 namespace ShoppingCartInterviewTestInCTests
@@ -7,125 +6,141 @@ namespace ShoppingCartInterviewTestInCTests
     [TestClass()]
     public class CheckoutTests
     {
-       
-        [TestMethod()]
+        Product _testProduct;
+        Product _strawberry;
+        Product _fruitTea;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            _testProduct = new Product
+            {
+                Name = "test",
+                Price = 9.99m,
+                ProductKey = "testKey",
+                promotion = Promiotion.BuyOneGetOneFree
+            };
+
+            _strawberry = new Product
+            {
+                Name = "Strawberry",
+                Price = 5m,
+                ProductKey = "SR1",
+                promotion = Promiotion.TenPercentOffIf3OrMore
+            };
+            _fruitTea = new Product
+            {
+                Name = "Fruit Tea",
+                Price = 3.11m,
+                ProductKey = "FR1",
+                promotion = Promiotion.BuyOneGetOneFree
+            };
+        }
+
+        [TestMethod]
         public void AddToCartNoExistingCartItemsTest()
         {
-            
-            var product = new Product {Name = "test",Price = 9.99m,ProductKey = "testKey",promotion = Promiotion.BuyOneGetOneFree};
-
             var checkout = new Checkout();
-            var cart = checkout.AddToCart(product);
-            checkout.AddToCart(product);
-            checkout.AddToCart(product);
-            Assert.IsNotNull(cart.CartItems.Find(x=>x.Product.ProductKey==product.ProductKey));
-            Assert.IsTrue(cart.TotalCost==19.98m);
-            
-
+            var cart = checkout.AddToCart(_testProduct);
+            checkout.AddToCart(_testProduct);
+            checkout.AddToCart(_testProduct);
+            Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == _testProduct.ProductKey));
+            Assert.IsTrue(cart.TotalCost == 19.98m);
         }
-        [TestMethod()]
+
+        [TestMethod]
         public void AddToCartWithExistingCartItemsTest()
         {
 
-            var product = new Product { Name = "test", Price = 9.99m, ProductKey = "testKey", promotion = Promiotion.BuyOneGetOneFree };
-
             var checkout = new Checkout();
-            
-            var cart = checkout.AddToCart(product);
-           checkout.AddToCart(product);
-            Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == product.ProductKey));
-            Assert.IsTrue(cart.TotalCost==9.99m);
 
-
+            var cart = checkout.AddToCart(_testProduct);
+            checkout.AddToCart(_testProduct);
+            Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == _testProduct.ProductKey));
+            Assert.IsTrue(cart.TotalCost == 9.99m);
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void RemoveFromCartTest()
         {
-            var product1 = new Product { Name = "test1", Price = 9.99m, ProductKey = "testKey1", promotion = Promiotion.BuyOneGetOneFree };
-            var product2 = new Product { Name = "test2", Price = 9.99m, ProductKey = "testKey2", promotion = Promiotion.BuyOneGetOneFree };
+
+            var product2 = new Product
+            {
+                Name = "test2",
+                Price = 9.99m,
+                ProductKey = "testKey2",
+                promotion = Promiotion.BuyOneGetOneFree
+            };
 
             var checkout = new Checkout();
-            var cart = checkout.AddToCart(product1);
+            var cart = checkout.AddToCart(_testProduct);
             checkout.AddToCart(product2);
-            Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == product1.ProductKey));
+            Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == _testProduct.ProductKey));
             Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == product2.ProductKey));
             checkout.RemoveFromCart(cart.CartItems.Find(x => x.Product.ProductKey == product2.ProductKey));
             Assert.IsNull(cart.CartItems.Find(x => x.Product.ProductKey == product2.ProductKey));
-            
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void ViewCartTest()
         {
-            var product = new Product { Name = "test", Price = 9.99m, ProductKey = "testKey", promotion = Promiotion.BuyOneGetOneFree };
-
             var checkout = new Checkout();
-           checkout.AddToCart(product);
+            checkout.AddToCart(_testProduct);
 
-            Cart cart = checkout.ViewCart();
-            Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == product.ProductKey));
+            var cart = checkout.ViewCart();
+            Assert.IsNotNull(cart.CartItems.Find(x => x.Product.ProductKey == _testProduct.ProductKey));
         }
 
         [TestMethod]
         public void BuyOneGetOneFreeAdd2Products()
         {
-            var product1 = new Product { Name = "test1", Price = 9.99m, ProductKey = "testKey1", promotion = Promiotion.BuyOneGetOneFree };
             var checkout = new Checkout();
-            var cart = checkout.AddToCart(product1);
-            checkout.AddToCart(product1);
+            var cart = checkout.AddToCart(_testProduct);
+            checkout.AddToCart(_testProduct);
 
             Assert.IsTrue(cart.TotalCost == 9.99m);
-
         }
+
         [TestMethod]
         public void BuyOneGetOneFreeAdd1Product()
         {
-            var product1 = new Product { Name = "test1", Price = 9.99m, ProductKey = "testKey1", promotion = Promiotion.BuyOneGetOneFree };
-
             var checkout = new Checkout();
-            var cart = checkout.AddToCart(product1);
+            var cart = checkout.AddToCart(_testProduct);
 
             Assert.IsTrue(cart.TotalCost == 9.99m);
-
         }
+
         [TestMethod]
         public void TenPercentOffIf3OrMoreAdd3TheSame()
         {
-            var strawberry = new Product { Name = "Strawberry", Price = 5m, ProductKey = "SR1", promotion = Promiotion.TenPercentOffIf3OrMore };
-            var fruitTea = new Product { Name = "Fruit Tea", Price = 3.11m, ProductKey = "FR1", promotion = Promiotion.BuyOneGetOneFree };
-
             var checkout = new Checkout();
-            var cart = checkout.AddToCart(strawberry);
-            checkout.AddToCart(strawberry);
-            checkout.AddToCart(strawberry);
-            checkout.AddToCart(fruitTea);
+            var cart = checkout.AddToCart(_strawberry);
+            checkout.AddToCart(_strawberry);
+            checkout.AddToCart(_strawberry);
+            checkout.AddToCart(_fruitTea);
 
             Assert.IsTrue(cart.TotalCost == 16.61m);
-
         }
+
         [TestMethod]
         public void TenPercentOffIf3OrMoreAddONlyTwo()
         {
-            var strawberry = new Product { Name = "Strawberry", Price = 5m, ProductKey = "SR1", promotion = Promiotion.TenPercentOffIf3OrMore };
-            var fruitTea = new Product { Name = "Fruit Tea", Price = 3.11m, ProductKey = "FR1", promotion = Promiotion.BuyOneGetOneFree };
 
             var checkout = new Checkout();
-            var cart = checkout.AddToCart(strawberry);
-            checkout.AddToCart(strawberry);
-            checkout.AddToCart(fruitTea);
+            var cart = checkout.AddToCart(_strawberry);
+            checkout.AddToCart(_strawberry);
+            checkout.AddToCart(_fruitTea);
 
             Assert.IsTrue(cart.TotalCost == 13.11m);
-
         }
-        [TestMethod]
-        public void NOPromotionTest()
-        {
-            var strawberry = new Product { Name = "Strawberry", Price = 5m, ProductKey = "SR1", promotion = Promiotion.None };
-            var checkout = new Checkout();
-            var cart = checkout.AddToCart(strawberry);
-            Assert.IsTrue(cart.TotalCost == 5m);
 
+        [TestMethod]
+        public void NoPromotionTest()
+        {
+
+            var checkout = new Checkout();
+            var cart = checkout.AddToCart(_strawberry);
+            Assert.IsTrue(cart.TotalCost == 5m);
         }
     }
 }

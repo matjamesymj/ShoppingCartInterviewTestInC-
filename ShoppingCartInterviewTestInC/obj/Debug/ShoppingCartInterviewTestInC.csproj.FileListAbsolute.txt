@@ -1,0 +1,5 @@
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInC\bin\Debug\ShoppingCartInterviewTestInC.dll
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInC\bin\Debug\ShoppingCartInterviewTestInC.pdb
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInC\obj\Debug\ShoppingCartInterviewTestInC.csprojResolveAssemblyReference.cache
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInC\obj\Debug\ShoppingCartInterviewTestInC.dll
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInC\obj\Debug\ShoppingCartInterviewTestInC.pdb

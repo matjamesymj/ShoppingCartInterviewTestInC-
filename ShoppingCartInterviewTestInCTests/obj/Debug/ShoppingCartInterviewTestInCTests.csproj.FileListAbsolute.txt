@@ -1,0 +1,9 @@
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\bin\Debug\ShoppingCartInterviewTestInCTests.dll
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\bin\Debug\ShoppingCartInterviewTestInCTests.pdb
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\bin\Debug\ShoppingCartInterviewTestInC.dll
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\bin\Debug\ShoppingCartInterviewTestInC.pdb
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\obj\Debug\ShoppingCartInterviewTestInCTests.csprojResolveAssemblyReference.cache
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\obj\Debug\ShoppingCartInterviewTestInCTests.dll
+C:\Users\Mathew\Source\Repos\ShoppingCartInterviewTestInC-\ShoppingCartInterviewTestInCTests\obj\Debug\ShoppingCartInterviewTestInCTests.pdb

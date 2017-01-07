@@ -6,30 +6,39 @@ using System.Threading.Tasks;
 
 namespace ShoppingCartInterviewTestInC
 {
-     public class Checkout : ICheckout
+    public class Checkout : ICheckout
     {
-         Cart Cart { get; set; }
+        Cart Cart { get; set; }
         public Checkout()
         {
             Cart = new Cart();
         }
-       
+
         public Cart AddToCart(Product product)
         {
             var cartItem = Cart.CartItems.Find(x => x.Product.ProductKey == product.ProductKey);
 
             if (cartItem == null)
             {
-                cartItem = new CartItem {Product = product,Quantiy = 1};
-                Cart.CartItems.Add(cartItem);
+                Cart.CartItems.Add(ProductNotInCart(product));
             }
             else
             {
-                cartItem.Quantiy += 1;
-                
+                AddOneToQuantity(cartItem);
             }
 
             return Cart;
+        }
+
+        private static void AddOneToQuantity(CartItem cartItem)
+        {
+            cartItem.Quantiy += 1;
+        }
+
+        private static CartItem ProductNotInCart(Product product)
+        {
+            return new CartItem { Product = product, Quantiy = 1 };
+
         }
 
         public Cart RemoveFromCart(CartItem cartItem)

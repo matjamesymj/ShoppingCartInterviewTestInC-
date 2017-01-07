@@ -24,7 +24,7 @@ namespace ShoppingCartInterviewTestInC
                     case Promiotion.BuyOneGetOneFree:
                         if (Quantiy >= 2)
                         {
-                            if (Quantiy%2 == 0)
+                            if (Quantiy%2 == 0) 
                             {
                                 return (Product.Price*Quantiy)/2;
                             }

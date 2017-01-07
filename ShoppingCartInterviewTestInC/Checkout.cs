@@ -11,23 +11,12 @@
 
         public Cart AddToCart(Product product)
         {
-            var cartItem = ProductExistInCart(product);
-
-            if (cartItem == null)
+            if (ProductExistInCart(product))
             {
-                Cart.CartItems.Add(ProductNotInCart(product));
+                return AddOneToQuantity(product);
             }
-            else
-            {
-                AddOneToQuantity(cartItem);
-            }
-
+            Cart.CartItems.Add(ProductNotInCart(product));
             return Cart;
-        }
-
-        private CartItem ProductExistInCart(Product product)
-        {
-            return Cart.CartItems.Find(x => x.Product.ProductKey == product.ProductKey);
         }
 
         public Cart RemoveFromCart(CartItem cartItem)
@@ -41,9 +30,16 @@
             return Cart;
         }
 
-        private static void AddOneToQuantity(CartItem cartItem)
+        private bool ProductExistInCart(Product product)
         {
+            return Cart.CartItems.Exists(x => x.Product.ProductKey == product.ProductKey);
+        }
+
+        private Cart AddOneToQuantity(Product product)
+        {
+            var cartItem = Cart.CartItems.Find(x => x.Product.ProductKey == product.ProductKey);
             cartItem.Quantiy += 1;
+            return Cart;
         }
 
         private static CartItem ProductNotInCart(Product product)

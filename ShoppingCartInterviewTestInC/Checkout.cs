@@ -5,6 +5,7 @@
         public Checkout()
         {
             Cart = new Cart();
+
         }
 
         private Cart Cart { get; }
